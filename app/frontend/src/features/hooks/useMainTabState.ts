@@ -2,7 +2,6 @@ import { create } from "zustand";
 
 type tabs = "animal" | "employee";
 const initialState = {
-  count: 0,
   currentTab: "animal" as tabs,
 };
 type Actions = {
