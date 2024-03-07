@@ -1,11 +1,12 @@
 import { getCookies } from "@utils/cookie";
 import { ZOO_API_HTTPS } from "@utils/http";
-import { animalPayloadWithId, animalPayload } from "@utils/type";
-export default async function updateAnimal(
-  payload: Partial<animalPayload>,
-  animalId: string
-) {
-  const response = await fetch(`${ZOO_API_HTTPS}/animal/${animalId}`, {
+import { animalPayloadWithId, animalPayload, updatePayload } from "@utils/type";
+
+export default async function updateAnimal({
+  payload,
+  id,
+}: updatePayload<animalPayload>) {
+  const response = await fetch(`${ZOO_API_HTTPS}/animal/${id}`, {
     method: "PUT",
     body: JSON.stringify(payload),
     headers: {

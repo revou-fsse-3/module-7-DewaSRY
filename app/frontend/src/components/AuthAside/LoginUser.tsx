@@ -9,39 +9,34 @@ import {
   Form,
   toFormikValidationSchema,
 } from "@common/Forms";
-import { registerPayload, registerSchema } from "@utils/type";
+import { loginPayload, loginSchemas } from "@utils/type";
 import { useMutation } from "@tanstack/react-query";
-import userRegister from "@http/auth/register";
+import userLogin from "@http/auth/login";
 // interface CreateAnimalProps extends ComponentProps<"div">, PropsWithChildren {}
 
 export default function RegisterUser() {
-  const { mutate: handleRegister } = useMutation({
-    mutationFn: userRegister,
+  const { mutate: handleLogin } = useMutation({
+    mutationFn: userLogin,
   });
 
-  const handlerSubmit: SubmitHandler<registerPayload> = (value) => {
-    handleRegister({
-      password: value.password,
-      username: value.username,
-    });
+  const handlerSubmit: SubmitHandler<loginPayload> = (value) => {
+    handleLogin(value);
   };
   return (
     <>
-      <Formik<registerPayload>
+      <Formik<loginPayload>
         initialValues={{
           username: "",
           password: "",
-          confirmPassword: "",
         }}
-        validationSchema={toFormikValidationSchema(registerSchema)}
+        validationSchema={toFormikValidationSchema(loginSchemas)}
         onSubmit={handlerSubmit}
       >
-        {(_props: FormikProps<registerPayload>) => (
+        {(_props: FormikProps<loginPayload>) => (
           <Form>
             <FormInput label="username" />
             <FormInput label="password" />
-            <FormInput label="confirmPassword" />
-            <Button type="submit">Register</Button>
+            <Button type="submit">Login</Button>
           </Form>
         )}
       </Formik>

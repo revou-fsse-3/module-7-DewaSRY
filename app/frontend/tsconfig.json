@@ -29,6 +29,7 @@
       "@features/*": ["./src/features/*"],
       "@http/*": ["./src/features/http/*"],
       "@utils/*": ["./src/features/utils/*"],
+      "@hooks/*": ["./src/features/hooks/*"],
       "@query/*": ["./src/features/query/*"],
 
       // page

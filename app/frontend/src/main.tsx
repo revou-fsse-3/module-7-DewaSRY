@@ -3,11 +3,9 @@ import "@mantine/core/styles/global.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { createTheme, MantineProvider } from "@mantine/core";
+import QueryProvider from "@features/query";
 import App from "./app";
-
-const queryClient = new QueryClient();
 
 const theme = createTheme({
   fontFamily: "Montserrat, sans-serif",
@@ -16,9 +14,9 @@ const theme = createTheme({
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <MantineProvider defaultColorScheme="dark" theme={theme}>
-      <QueryClientProvider client={queryClient}>
+      <QueryProvider>
         <App />
-      </QueryClientProvider>
+      </QueryProvider>
     </MantineProvider>
   </React.StrictMode>
 );

@@ -4,6 +4,7 @@ import AuthAside from "@components/AuthAside";
 import MainTabs from "@components/MainTabs";
 // import EmployeeTable from "@components/EmployeeTable";
 // import AnimalTable from "@components/AnimalTable";
+
 interface HomeProps extends ComponentProps<"div"> {}
 type HomeComponents = FC<HomeProps> & PropsWithChildren;
 const Home: HomeComponents = () => {

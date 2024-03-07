@@ -50,12 +50,12 @@ describe("testing create new Animal", () => {
 
       ok: true,
     });
-    const actual = await updateAnimal(
-      {
+    const actual = await updateAnimal({
+      payload: {
         age: 10,
       },
-      animalResolve.animalId
-    );
+      id: animalResolve.animalId,
+    });
     expect(actual).toEqual(animalAfterUpdate);
   });
 });

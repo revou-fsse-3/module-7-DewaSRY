@@ -46,12 +46,12 @@ describe("testing create new Employee", () => {
 
       ok: true,
     });
-    const actual = await updateEmployee(
-      {
+    const actual = await updateEmployee({
+      payload: {
         phone: "this is a phone new",
       },
-      employeeResolve.employeeId
-    );
+      id: employeeResolve.employeeId,
+    });
     expect(actual).toEqual(EmployeeAfterUpdate);
   });
 });

@@ -1,5 +1,5 @@
 import { ZOO_API_HTTPS } from "@utils/http";
-import { authPayload } from "@utils/type";
+import { loginPayload as authPayload } from "@utils/type";
 import userLogin from "@http/auth/login";
 export default async function userRegister(payload: authPayload) {
   const response = await fetch(`${ZOO_API_HTTPS}/register`, {
