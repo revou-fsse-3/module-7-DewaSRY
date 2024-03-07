@@ -2,9 +2,7 @@ import { FC, ComponentProps, PropsWithChildren } from "react";
 import { AppShell } from "@mantine/core";
 import AuthAside from "@components/AuthAside";
 import MainTabs from "@components/MainTabs";
-// import EmployeeTable from "@components/EmployeeTable";
-// import AnimalTable from "@components/AnimalTable";
-
+import MainModal from "./components/MainModal";
 interface HomeProps extends ComponentProps<"div"> {}
 type HomeComponents = FC<HomeProps> & PropsWithChildren;
 const Home: HomeComponents = () => {
@@ -21,11 +19,9 @@ const Home: HomeComponents = () => {
       <AppShell.Main>
         <div className="xl:w-[100rem] xl:m-auto">
           <MainTabs />
-          {/* <EmployeeTable /> */}
-          {/* <AnimalTable /> */}
+          <MainModal />
         </div>
       </AppShell.Main>
-      <AppShell.Section></AppShell.Section>
     </AppShell>
   );
 };

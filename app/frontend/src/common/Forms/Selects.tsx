@@ -10,17 +10,15 @@ export default function SelectFormic({
   children,
   label,
   options,
-  ...resProps
 }: MySelectProps) {
   const [field, meta] = useField(label);
   return (
     <Fragment>
       <label className="flex flex-col item-start my-5" htmlFor={label}>
-        <h1 className="text-lg text-left mx-10 my-2">{label}</h1>
+        <h1 className="text-lg  my-2">{label}</h1>
         <select
-          {...resProps}
           {...field}
-          className="border-2 border-black bg-transparent mx-10 text-left text-lg rounded-lg"
+          className="border-2 border-black  text-left text-lg rounded-sm py-2"
         >
           {options.map((o) => (
             <Fragment key={o}>
@@ -31,7 +29,7 @@ export default function SelectFormic({
 
         {children}
         {meta.touched && meta.error ? (
-          <div className="text-black text-left mx-10 my-2">{meta.error}</div>
+          <div className="text-red-400 text-left  my-2">{meta.error}</div>
         ) : null}
       </label>
     </Fragment>

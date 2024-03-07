@@ -3,12 +3,11 @@ import Table from "@common/Table";
 import { animalPayloadWithId } from "@utils/type";
 import getAllAnimals from "@http/animal/allAnimals";
 import { useQuery } from "@tanstack/react-query";
-import useAnimals from "@hooks/useAnimals";
+import useAnimals from "@/features/hooks/useAnimals";
 import columns from "./Columns";
-import Skeletons from "./Skeletons";
+import Skeletons from "@common/Skeletons";
 
 // interface EmployeeTableProps extends ComponentProps<"div">, PropsWithChildren {}
-
 export default function AnimalTable() {
   const setAnimals = useAnimals((s) => s.setAnimals);
   const { data, isLoading, isSuccess } = useQuery<animalPayloadWithId[], Error>(
@@ -21,11 +20,11 @@ export default function AnimalTable() {
     setAnimals(data);
   }
   return (
-    <div>
+    <>
       {isLoading && <Skeletons />}
       {data && !isLoading && (
         <Table<animalPayloadWithId> columns={columns} data={data} />
       )}
-    </div>
+    </>
   );
 }
