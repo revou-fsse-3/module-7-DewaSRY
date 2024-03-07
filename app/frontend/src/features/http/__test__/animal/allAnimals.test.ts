@@ -4,7 +4,7 @@ import { animalPayload, animalPayloadWithId } from "@utils/type";
 
 const mockAnimal: animalPayload = {
   name: "cat",
-  species: "Mam",
+  species: "Mammals",
   gender: "Male",
   age: 10,
 };

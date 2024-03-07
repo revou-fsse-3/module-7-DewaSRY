@@ -5,6 +5,6 @@ export interface SubmitHandler<T> {
 }
 export { default as FormInput } from "./Input";
 export { default as FormSelect } from "./Selects";
-export * from "zod-formik-adapter";
+export { toFormikValidationSchema } from "zod-formik-adapter";
 // eslint-disable-next-line react-refresh/only-export-components
 export * from "formik";

@@ -15,7 +15,7 @@ from app.zoo_api.utils.SqlPhat import  my_sql
 
 
 def create_app(db_url=None):
-    app = Flask(__name__)
+    app = Flask(__name__,static_url_path="/",static_folder="../frontend/dist")
     app.config["API_TITLE"] = "Zoo REST API "
     app.config["API_VERSION"] = "v0"
     app.config["OPENAPI_VERSION"] = "3.0.3"
@@ -66,8 +66,10 @@ def create_app(db_url=None):
     
     api.register_blueprint(AnimalView,)
     api.register_blueprint(EmployeeView,)
-    api.register_blueprint(UserViews,)
-    
+    api.register_blueprint(UserViews)
+    @app.route("/")
+    def index():
+        return app.send_static_file("index.html")
 
     return app
 
