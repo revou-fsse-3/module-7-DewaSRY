@@ -20,6 +20,8 @@ import { useMutation } from "@tanstack/react-query";
 import employeeCreate from "@http/employee/newEmployee";
 import employeeUpdate from "@http/employee/updateEmployee";
 import employeeDelete from "@http/employee/delEmployee";
+import useMainModeState from "@hooks/useMainModeState";
+
 import { allDataMutateSuccess } from "@features/query";
 
 interface EmployeeFormsProps {
@@ -39,6 +41,7 @@ export default function EmployeeForms({
   id = "",
   isCreate,
 }: EmployeeFormsProps) {
+  const closeModel = useMainModeState((s) => s.closeModel);
   const { mutate: employeeCreateHandler } = useMutation({
     mutationFn: employeeCreate,
     ...allDataMutateSuccess("employee"),
@@ -52,18 +55,27 @@ export default function EmployeeForms({
     ...allDataMutateSuccess("employee"),
   });
 
-  const handlerSubmit: SubmitHandler<employee> = (value) => {
+  const handlerSubmit: SubmitHandler<employee> = (value, action) => {
     if (isCreate) {
       employeeCreateHandler(value);
     } else {
       employeeUpdateHandler({
-        payload: value,
+        payload: {
+          email: value.email,
+          phone: value.phone,
+          name: value.name,
+          schedule: value.schedule,
+          role: value.role,
+        },
         id: id,
       });
     }
+    action.resetForm();
+    closeModel();
   };
   const deleteHandler = () => {
     employeeDeleteHandler(id);
+    closeModel();
   };
   return (
     <>
@@ -73,27 +85,24 @@ export default function EmployeeForms({
         onSubmit={handlerSubmit}
       >
         {(_props: FormikProps<employee>) => (
-          <Form className="relative">
+          <Form className="">
             <FormInput label="name" />
             <FormInput label="email" type="email" />
             <FormInput label="phone" />
-            <FormSelect label="role" options={roles} />
             <FormSelect label="schedule" options={schedules} />
-            <Button type="submit" variant="outline" color="green">
-              {isCreate
-                ? "Register new Employee "
-                : `Edit '${initialValue.name}' data`}
-            </Button>
-            {!isCreate && (
-              <Button
-                className="absolute bottom-0 right-0"
-                onClick={deleteHandler}
-                variant="outline"
-                color="red"
-              >
-                Remove '{initialValue.name}' from the list
+            <FormSelect label="role" options={roles} />
+            <div className="flex justify-between mt-10 ">
+              <Button type="submit" variant="outline" color="green">
+                {isCreate
+                  ? "Register new Employee "
+                  : `Edit '${initialValue.name}' data`}
               </Button>
-            )}
+              {!isCreate && (
+                <Button onClick={deleteHandler} variant="outline" color="red">
+                  Remove '{initialValue.name}' from the list
+                </Button>
+              )}
+            </div>
           </Form>
         )}
       </Formik>

@@ -14,6 +14,10 @@ const columns = [
     header: () => <Text size="md">ROLE</Text>,
     cell: (info) => <Text size="md">{info.renderValue()}</Text>,
   }),
+  columnHelper.accessor("schedule", {
+    header: () => <Text size="md">SCHEDULE</Text>,
+    cell: (info) => <Text size="md">{info.renderValue()}</Text>,
+  }),
   columnHelper.accessor("email", {
     header: () => <Text size="md">EMAIL</Text>,
     cell: (info) => <Text size="md">{info.renderValue()}</Text>,

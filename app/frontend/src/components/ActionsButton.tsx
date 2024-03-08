@@ -15,6 +15,7 @@ export default function ActionsButton({ id, children }: ActionsFormProps) {
   const handlerClick = () => {
     if (currentTab == "animal") {
       setCurrentAnimal(id);
+      console.log(id);
     } else {
       setCurrentEmployee(id);
     }

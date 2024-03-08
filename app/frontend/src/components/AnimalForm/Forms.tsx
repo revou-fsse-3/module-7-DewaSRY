@@ -20,6 +20,8 @@ import { useMutation } from "@tanstack/react-query";
 import animalCreate from "@http/animal/newAnimal";
 import animalUpdate from "@http/animal/updateAnimal";
 import animalDelete from "@http/animal/delAnimal";
+import useMainModeState from "@hooks/useMainModeState";
+
 import { allDataMutateSuccess } from "@features/query";
 
 interface AnimalFormsProps {
@@ -38,6 +40,8 @@ export default function AnimalForms({
   id = "",
   isCreate,
 }: AnimalFormsProps) {
+  const closeModel = useMainModeState((s) => s.closeModel);
+
   const { mutate: animalCreateHandler } = useMutation({
     mutationFn: animalCreate,
     ...allDataMutateSuccess("animal"),
@@ -51,18 +55,26 @@ export default function AnimalForms({
     ...allDataMutateSuccess("animal"),
   });
 
-  const handlerSubmit: SubmitHandler<animal> = (value) => {
+  const handlerSubmit: SubmitHandler<animal> = (value, action) => {
     if (isCreate) {
       animalCreateHandler(value);
     } else {
       animalUpdateHandler({
-        payload: value,
+        payload: {
+          age: value.age,
+          gender: value.gender,
+          name: value.name,
+          species: value.species,
+        },
         id: id,
       });
     }
+    action.resetForm();
+    closeModel();
   };
   const deleteHandler = () => {
     animalDeleteHandler(id);
+    closeModel();
   };
   return (
     <Formik<animal>
@@ -71,26 +83,28 @@ export default function AnimalForms({
       onSubmit={handlerSubmit}
     >
       {(_props: FormikProps<animal>) => (
-        <Form className="relative">
+        <Form className="">
           <FormInput label="name" />
           <FormInput label="age" type="number" />
           <FormSelect label="species" options={species} />
           <FormSelect label="gender" options={genders} />
-          <Button type="submit" variant="outline" color="green">
-            {isCreate
-              ? "Create new animal record"
-              : `Edit '${initialValue.name}' data`}
-          </Button>
-          {!isCreate && (
-            <Button
-              className="absolute bottom-0 right-0"
-              onClick={deleteHandler}
-              variant="outline"
-              color="red"
-            >
-              Remove '{initialValue.name}' on Zoo list
+          <div className="flex justify-between mt-10 ">
+            <Button type="submit" variant="outline" color="green">
+              {isCreate
+                ? "Create new animal record"
+                : `Edit '${initialValue.name}' data`}
             </Button>
-          )}
+            {!isCreate && (
+              <Button
+                className=""
+                onClick={deleteHandler}
+                variant="outline"
+                color="red"
+              >
+                Remove '{initialValue.name}' on Zoo list
+              </Button>
+            )}
+          </div>
         </Form>
       )}
     </Formik>

@@ -29,9 +29,9 @@ const columns = [
   }),
   columnHelper.accessor("animalId", {
     header: () => <Text size="md">ACTION</Text>,
-    cell: (props) => (
-      <ActionsButton id={props.getValue()}>action</ActionsButton>
-    ),
+    cell: (props) => {
+      return <ActionsButton id={props.getValue()}>action</ActionsButton>;
+    },
   }),
 ] as unknown as ColumnDef<animalPayloadWithId, unknown>[];
 

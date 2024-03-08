@@ -22,7 +22,7 @@ export default function SelectFormic({
         >
           {options.map((o) => (
             <Fragment key={o}>
-              <option value={o}>{o}</option>
+              <option value={o.trim()}>{o}</option>
             </Fragment>
           ))}
         </select>

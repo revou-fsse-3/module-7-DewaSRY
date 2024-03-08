@@ -41,6 +41,7 @@ class AnimalViews(MethodView):
     @blp.arguments(AnimalSchemas)
     @blp.response(HTTPStatus.ACCEPTED, AnimalSchemasWithId)
     def put(self ,item_data,item_id):
+        print(item_data)
         try:
             return DBS.updateDbModel(item_id,item_data)
         except SQLAlchemyError as  E:
