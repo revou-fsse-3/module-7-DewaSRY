@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import useEmployees from "@/features/hooks/useEmployees";
 import columns from "./Columns";
 import Skeletons from "@common/Skeletons";
+import NotFound from "@common/NotFound";
 // interface EmployeeTableProps extends ComponentProps<"div">, PropsWithChildren {}
 
 export default function EmployeeTable() {
@@ -26,6 +27,7 @@ export default function EmployeeTable() {
       {data && data.length > 0 && (
         <Table<employeePayloadWithId> columns={columns} data={data} />
       )}
+      {data?.length === 0 && <NotFound title="Employee table's is empty" />}
     </>
   );
 }

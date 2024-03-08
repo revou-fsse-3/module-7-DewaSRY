@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAnimals from "@/features/hooks/useAnimals";
 import columns from "./Columns";
 import Skeletons from "@common/Skeletons";
+import NotFound from "@/common/NotFound";
 
 // interface EmployeeTableProps extends ComponentProps<"div">, PropsWithChildren {}
 export default function AnimalTable() {
@@ -25,6 +26,7 @@ export default function AnimalTable() {
       {data && !isLoading && (
         <Table<animalPayloadWithId> columns={columns} data={data} />
       )}
+      {data?.length === 0 && <NotFound title="Animal table's is empty" />}
     </>
   );
 }

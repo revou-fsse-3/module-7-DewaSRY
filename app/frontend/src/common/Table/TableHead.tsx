@@ -1,6 +1,5 @@
 import { Fragment, ComponentProps } from "react";
 import { flexRender, Table } from "@tanstack/react-table";
-// import { animalPayloadWithId } from "@utils/type";
 import { Table as MTable } from "@mantine/core";
 interface TableHeadProps<T> extends ComponentProps<"thead"> {
   table: Table<T>;
