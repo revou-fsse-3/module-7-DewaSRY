@@ -17,7 +17,7 @@ export default function FormicInput({
         id={label}
         {...resProps}
         {...field}
-        className="border-2 border-black text-left text-lg rounded-sm"
+        className="border-2 border-black text-left text-lg px-2  rounded-sm"
       />
       {children}
       {meta.touched && meta.error ? (

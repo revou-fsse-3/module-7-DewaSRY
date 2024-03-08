@@ -18,7 +18,7 @@ export default function SelectFormic({
         <h1 className="text-lg  my-2">{label}</h1>
         <select
           {...field}
-          className="border-2 border-black  text-left text-lg rounded-sm py-2"
+          className="border-2 border-black px-2  text-left text-lg rounded-sm py-2"
         >
           {options.map((o) => (
             <Fragment key={o}>

@@ -65,25 +65,34 @@ export default function AnimalForms({
     animalDeleteHandler(id);
   };
   return (
-    <>
-      <Formik<animal>
-        initialValues={initialValue}
-        validationSchema={toFormikValidationSchema(animalSchemas)}
-        onSubmit={handlerSubmit}
-      >
-        {(_props: FormikProps<animal>) => (
-          <Form>
-            <FormInput label="name" />
-            <FormInput label="age" type="number" />
-            <FormSelect label="species" options={species} />
-            <FormSelect label="gender" options={genders} />
-            <Button type="submit">
-              {isCreate ? "Create animal" : `update ${initialValue.name}`}
+    <Formik<animal>
+      initialValues={initialValue}
+      validationSchema={toFormikValidationSchema(animalSchemas)}
+      onSubmit={handlerSubmit}
+    >
+      {(_props: FormikProps<animal>) => (
+        <Form className="relative">
+          <FormInput label="name" />
+          <FormInput label="age" type="number" />
+          <FormSelect label="species" options={species} />
+          <FormSelect label="gender" options={genders} />
+          <Button type="submit" variant="outline" color="green">
+            {isCreate
+              ? "Create new animal record"
+              : `Edit '${initialValue.name}' data`}
+          </Button>
+          {!isCreate && (
+            <Button
+              className="absolute bottom-0 right-0"
+              onClick={deleteHandler}
+              variant="outline"
+              color="red"
+            >
+              Remove '{initialValue.name}' on Zoo list
             </Button>
-            {!isCreate && <Button onClick={deleteHandler}></Button>}
-          </Form>
-        )}
-      </Formik>
-    </>
+          )}
+        </Form>
+      )}
+    </Formik>
   );
 }

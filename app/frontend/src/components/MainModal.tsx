@@ -9,7 +9,7 @@ export default function MainModal() {
   const { modelOpen, closeModel } = useMainModeState();
   return (
     <Modal
-      size="calc(100vw - 3rem)"
+      size="55%"
       opened={modelOpen}
       onClose={closeModel}
       withCloseButton={false}

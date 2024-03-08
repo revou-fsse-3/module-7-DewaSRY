@@ -73,16 +73,27 @@ export default function EmployeeForms({
         onSubmit={handlerSubmit}
       >
         {(_props: FormikProps<employee>) => (
-          <Form>
+          <Form className="relative">
             <FormInput label="name" />
             <FormInput label="email" type="email" />
             <FormInput label="phone" />
             <FormSelect label="role" options={roles} />
             <FormSelect label="schedule" options={schedules} />
-            <Button type="submit">
-              {isCreate ? "Create employee" : `update ${initialValue.name}`}
+            <Button type="submit" variant="outline" color="green">
+              {isCreate
+                ? "Register new Employee "
+                : `Edit '${initialValue.name}' data`}
             </Button>
-            {!isCreate && <Button onClick={deleteHandler}></Button>}
+            {!isCreate && (
+              <Button
+                className="absolute bottom-0 right-0"
+                onClick={deleteHandler}
+                variant="outline"
+                color="red"
+              >
+                Remove '{initialValue.name}' from the list
+              </Button>
+            )}
           </Form>
         )}
       </Formik>

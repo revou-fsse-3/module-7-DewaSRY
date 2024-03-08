@@ -4,6 +4,7 @@ import AuthAside from "@components/AuthAside";
 import MainTabs from "@components/MainTabs";
 import MainModal from "@components/MainModal";
 import HeaderLogo from "@components/HeaderLogo";
+import MainFooter from "@components/MainFooter";
 interface HomeProps extends ComponentProps<"div"> {}
 type HomeComponents = FC<HomeProps> & PropsWithChildren;
 const Home: HomeComponents = () => {
@@ -26,6 +27,9 @@ const Home: HomeComponents = () => {
         <MainModal />
         <AuthAside />
       </AppShell.Section>
+      <AppShell.Footer className="p2-8 pt-2 mx-2  ">
+        <MainFooter />
+      </AppShell.Footer>
     </AppShell>
   );
 };
