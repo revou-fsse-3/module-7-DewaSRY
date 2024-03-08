@@ -20,6 +20,7 @@ export default defineConfig({
       "@http": fileURLToPath(new URL("./src/features/http", import.meta.url)),
       "@utils": fileURLToPath(new URL("./src/features/utils", import.meta.url)),
       "@hooks": fileURLToPath(new URL("./src/features/hooks", import.meta.url)),
+      "@query": fileURLToPath(new URL("./src/features/query", import.meta.url)),
     },
   },
   test: {

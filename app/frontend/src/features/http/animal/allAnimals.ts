@@ -11,7 +11,6 @@ export default async function getAllAnimals() {
   if (!response.ok) {
     throw Error("failed to create animal");
   }
-  console.log(response.status);
   const data = response.json() as unknown as animalPayloadWithId[];
 
   return data;

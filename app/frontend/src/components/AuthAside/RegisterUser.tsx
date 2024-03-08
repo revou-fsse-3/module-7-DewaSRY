@@ -10,33 +10,18 @@ import {
   toFormikValidationSchema,
 } from "@common/Forms";
 import { registerPayload, registerSchema } from "@utils/type";
-import { useMutation } from "@tanstack/react-query";
-import userRegister from "@http/auth/register";
-import useAuthAsideState from "@hooks/useAuthAsideState";
-import useAuthenticationState from "@hooks/useAuthenticationState";
-
-// interface CreateAnimalProps extends ComponentProps<"div">, PropsWithChildren {}
+import useUserRegister from "@/features/query/useLoginQuery";
 
 export default function RegisterUser() {
-  const closeModel = useAuthAsideState((s) => s.closeAuthAside);
-
-  const setIsAuthentications = useAuthenticationState(
-    (s) => s.setIsAuthentications
-  );
-  const { mutate: handleRegister, isSuccess } = useMutation({
-    mutationFn: userRegister,
-  });
+  const { handlerUserLogin } = useUserRegister();
 
   const handlerSubmit: SubmitHandler<registerPayload> = (value) => {
-    handleRegister({
+    handlerUserLogin({
       password: value.password.trim(),
       username: value.username.trim(),
     });
-    closeModel();
   };
-  if (isSuccess) {
-    setIsAuthentications(true);
-  }
+
   return (
     <>
       <Formik<registerPayload>

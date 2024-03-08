@@ -11,7 +11,7 @@ export default async function userRegister(payload: authPayload) {
     },
   });
 
-  if (response.status == 422) {
+  if (!response.ok) {
     throw Error("failed to username already register");
   }
 

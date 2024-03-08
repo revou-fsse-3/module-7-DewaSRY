@@ -3,6 +3,7 @@ import { AppShell } from "@mantine/core";
 import AuthAside from "@components/AuthAside";
 import MainTabs from "@components/MainTabs";
 import MainModal from "@components/MainModal";
+import MainALert from "@components/MainALert";
 import HeaderLogo from "@components/HeaderLogo";
 import MainFooter from "@components/MainFooter";
 
@@ -27,6 +28,7 @@ const Home: HomeComponents = () => {
       <AppShell.Section>
         <MainModal />
         <AuthAside />
+        <MainALert />
       </AppShell.Section>
       <footer className="p2-8 pt-2 mx-2  ">
         <MainFooter />
