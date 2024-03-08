@@ -10,13 +10,13 @@ import {
   toFormikValidationSchema,
 } from "@common/Forms";
 import { registerPayload, registerSchema } from "@utils/type";
-import useUserRegister from "@/features/query/useLoginQuery";
+import useUserRegister from "@query/useRegisterQuery";
 
 export default function RegisterUser() {
-  const { handlerUserLogin } = useUserRegister();
+  const { handlerUserRegister } = useUserRegister();
 
   const handlerSubmit: SubmitHandler<registerPayload> = (value) => {
-    handlerUserLogin({
+    handlerUserRegister({
       password: value.password.trim(),
       username: value.username.trim(),
     });
