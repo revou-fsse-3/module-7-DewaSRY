@@ -26,7 +26,6 @@ class UserRegister(MethodView):
         if UserModel.query.filter(UserModel.username == user_data["username"]).first():
             abort(409, message="A user with that username or email already exists.")
         DBS.addModel(**user_data)
-        print(user_data)
         return {"message": "User created successfully."}, 201
 
 @blp.route("/login")
@@ -36,7 +35,6 @@ class UserLogin(MethodView):
         user = UserModel.query.filter(
             UserModel.username == user_data["username"]
         ).first()
-        print(user_data)
         if user and pbkdf2_sha256.verify(user_data["password"], user.password):
             access_token = create_access_token(identity=user.userId, expires_delta=timedelta( days=7) )
             return {"access_token": access_token, }
