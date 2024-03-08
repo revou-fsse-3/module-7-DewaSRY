@@ -1,27 +1,29 @@
 import { ColumnDef, createColumnHelper } from "@tanstack/react-table";
 import { employeePayloadWithId } from "@utils/type";
 import ActionsButton from "@components/ActionsButton";
+import { Text } from "@mantine/core";
+
 const columnHelper = createColumnHelper<employeePayloadWithId>();
 
 const columns = [
   columnHelper.accessor("name", {
-    cell: (info) => info.getValue(),
-    footer: (info) => info.column.id,
+    header: () => <Text size="md">NAME</Text>,
+    cell: (info) => <Text size="md">{info.renderValue()}</Text>,
   }),
   columnHelper.accessor("role", {
-    header: () => "Age",
-    cell: (info) => info.renderValue(),
+    header: () => <Text size="md">ROLE</Text>,
+    cell: (info) => <Text size="md">{info.renderValue()}</Text>,
   }),
   columnHelper.accessor("email", {
-    header: () => <span>Visits</span>,
-    cell: (info) => info.getValue(),
+    header: () => <Text size="md">EMAIL</Text>,
+    cell: (info) => <Text size="md">{info.renderValue()}</Text>,
   }),
   columnHelper.accessor("phone", {
-    header: "Status",
-    cell: (info) => info.getValue(),
+    header: () => <Text size="md">PHONE</Text>,
+    cell: (info) => <Text size="md">{info.renderValue()}</Text>,
   }),
   columnHelper.accessor("employeeId", {
-    header: "Status",
+    header: () => <Text size="md">ACTION</Text>,
     cell: (props) => (
       <ActionsButton id={props.getValue()}>actions</ActionsButton>
     ),

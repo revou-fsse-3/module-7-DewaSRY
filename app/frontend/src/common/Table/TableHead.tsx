@@ -16,27 +16,12 @@ function TableHead<T>({ table }: TableHeadProps<T>) {
             return (
               <MTable.Th key={header.id + id} colSpan={header.colSpan}>
                 {header.isPlaceholder ? null : (
-                  <div
-                    {...{
-                      className: header.column.getCanSort()
-                        ? "cursor-pointer select-none"
-                        : "",
-                      onClick: header.column.getToggleSortingHandler(),
-                    }}
-                  >
-                    <Fragment>
-                      {flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                    </Fragment>
-                    <Fragment>
-                      {{
-                        asc: " 🔼",
-                        desc: " 🔽",
-                      }[header.column.getIsSorted() as string] ?? null}
-                    </Fragment>
-                  </div>
+                  <Fragment>
+                    {flexRender(
+                      header.column.columnDef.header,
+                      header.getContext()
+                    )}
+                  </Fragment>
                 )}
               </MTable.Th>
             );

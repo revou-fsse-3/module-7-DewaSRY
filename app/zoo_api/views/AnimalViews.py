@@ -18,12 +18,7 @@ class AnimalsViews(MethodView):
     
     @blp.response(HTTPStatus.OK, AnimalSchemasWithId(many=True), description="halloo")
     def get(self):
-        items=DBS.getDbModalAll()
-        for t in items:
-            print(t)
-        print("hite")
-        
-        return items
+        return DBS.getDbModalAll()
     
     @jwt_required()
     @blp.arguments(AnimalSchemas)

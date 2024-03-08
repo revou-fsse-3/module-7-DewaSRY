@@ -1,16 +1,16 @@
 import { create } from "zustand";
 
 const initialState = {
-  modelOpen: false,
+  authAsideOpen: false,
 };
 type Actions = {
-  openModel: () => void;
-  closeModel: () => void;
+  openAuthAside: () => void;
+  closeAuthAside: () => void;
 };
 type State = typeof initialState;
 const useMainModeState = create<State & Actions>((set) => ({
   ...initialState,
-  openModel: () => set({ modelOpen: true }),
-  closeModel: () => set({ modelOpen: false }),
+  openAuthAside: () => set({ authAsideOpen: true }),
+  closeAuthAside: () => set({ authAsideOpen: false }),
 }));
 export default useMainModeState;

@@ -1,29 +1,34 @@
 import { ColumnDef, createColumnHelper } from "@tanstack/react-table";
 import { animalPayloadWithId } from "@utils/type";
 import ActionsButton from "@components/ActionsButton";
-
+import { Text } from "@mantine/core";
 const columnHelper = createColumnHelper<animalPayloadWithId>();
 
 const columns = [
   columnHelper.accessor("name", {
-    header: () => <span>name</span>,
-    footer: (info) => info.column.id,
+    header: () => <Text size="md">NAME</Text>,
+    cell: (info) => <Text size="md">{info.renderValue()}</Text>,
   }),
   columnHelper.accessor("species", {
-    header: () => <span>species</span>,
-    cell: (info) => info.renderValue(),
+    header: () => <Text size="md">SPECIES</Text>,
+    cell: (info) => <Text size="md">{info.renderValue()}</Text>,
     footer: (info) => info.column.id,
   }),
   columnHelper.accessor("gender", {
-    header: () => <span>gender</span>,
+    header: () => <Text size="md">GENDER</Text>,
+
+    cell: (info) => <Text size="md">{info.renderValue()}</Text>,
+
     footer: (info) => info.column.id,
   }),
   columnHelper.accessor("age", {
-    header: () => <span>Age</span>,
+    header: () => <Text size="md">AGE</Text>,
+    cell: (info) => <Text size="md">{info.renderValue()}</Text>,
+
     footer: (info) => info.column.id,
   }),
   columnHelper.accessor("animalId", {
-    header: "action",
+    header: () => <Text size="md">ACTION</Text>,
     cell: (props) => (
       <ActionsButton id={props.getValue()}>action</ActionsButton>
     ),

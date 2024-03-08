@@ -1,14 +1,16 @@
 import { ComponentProps, PropsWithChildren } from "react";
-import { Button } from "@mantine/core";
+import ProtectionButton from "@components/ProtectionButton";
 import useAnimals from "@hooks/useAnimals";
 import useEmployee from "@hooks/useEmployees";
 import useMainTabState from "@hooks/useMainTabState";
+import useMainModeState from "@hooks/useMainModeState";
 interface ActionsFormProps extends ComponentProps<"div">, PropsWithChildren {
   id: string;
 }
 export default function ActionsButton({ id, children }: ActionsFormProps) {
   const setCurrentAnimal = useAnimals((s) => s.setCurrentAnimal);
   const setCurrentEmployee = useEmployee((s) => s.setCurrentEmployee);
+  const openMainModel = useMainModeState((s) => s.openModel);
   const currentTab = useMainTabState((s) => s.currentTab);
   const handlerClick = () => {
     if (currentTab == "animal") {
@@ -16,6 +18,9 @@ export default function ActionsButton({ id, children }: ActionsFormProps) {
     } else {
       setCurrentEmployee(id);
     }
+    openMainModel();
   };
-  return <Button onClick={handlerClick}>{children}</Button>;
+  return (
+    <ProtectionButton handleClick={handlerClick}>{children}</ProtectionButton>
+  );
 }

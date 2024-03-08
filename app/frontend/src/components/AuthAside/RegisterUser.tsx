@@ -39,9 +39,11 @@ export default function RegisterUser() {
         {(_props: FormikProps<registerPayload>) => (
           <Form>
             <FormInput label="username" />
-            <FormInput label="password" />
-            <FormInput label="confirmPassword" />
-            <Button type="submit">Register</Button>
+            <FormInput label="password" type="password" />
+            <FormInput label="confirmPassword" type="password" />
+            <Button fullWidth variant="outline" type="submit" color="gray">
+              Register
+            </Button>
           </Form>
         )}
       </Formik>
