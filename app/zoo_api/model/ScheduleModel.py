@@ -21,7 +21,7 @@ class ScheduleModel(db.Model):
   
 
     def __repr__(self) -> str:
-        return f"{self.name} "
+        return f"{self.name}"
     
 
 

@@ -3,7 +3,7 @@ export const employeeSchemas = z.object({
   role: z.enum(["Animal keeper", "Manager", "Cleaner"], {
     required_error: "please put the role on the employee",
   }),
-  schedule: z.string({
+  schedule: z.enum(["Morning", "Middle day", "Afternoon"], {
     required_error: "please put the right schedule",
   }),
   name: z.string({
