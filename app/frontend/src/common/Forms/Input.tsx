@@ -10,11 +10,12 @@ export default function FormicInput({
   ...resProps
 }: FormicInputProps) {
   const [field, meta] = useField(label);
+  const createId = label + Math.random();
   return (
-    <label className="flex flex-col item-start my-5 gap-y-4" htmlFor={label}>
+    <label className="flex flex-col item-start my-5 gap-y-4" htmlFor={createId}>
       <h1 className=" text-lg">{label}</h1>
       <input
-        id={label}
+        id={createId}
         {...resProps}
         {...field}
         className="border-2 border-black text-left text-lg px-2  rounded-sm"

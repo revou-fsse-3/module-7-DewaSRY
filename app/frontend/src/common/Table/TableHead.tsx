@@ -11,7 +11,6 @@ function TableHead<T>({ table }: TableHeadProps<T>) {
     <MTable.Thead>
       {table.getHeaderGroups().map((headerGroup) => (
         <MTable.Tr key={headerGroup.id}>
-          <th>NO</th>
           {headerGroup.headers.map((header, id) => {
             return (
               <MTable.Th key={header.id + id} colSpan={header.colSpan}>

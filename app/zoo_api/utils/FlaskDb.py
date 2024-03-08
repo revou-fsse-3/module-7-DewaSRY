@@ -8,11 +8,3 @@ class Base(DeclarativeBase):
 db = SQLAlchemy(model_class=Base)
 
 
-class FlaskDb:
-    """  SessionFlaskModel"""
-    db:SQLAlchemy= None
-    
-    def getDb()-> SQLAlchemy: 
-        if FlaskDb.db== None:        
-            FlaskDb.db = SQLAlchemy(model_class=Base)
-        return FlaskDb.db

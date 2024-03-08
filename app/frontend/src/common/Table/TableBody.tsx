@@ -18,7 +18,6 @@ function TableBody<T>({ table }: TableBodyProps<T>) {
                 ${i % 2 === 0 ? "bg-gray-500" : "bg-gray-700"}
                 `}
           >
-            <MTable.Td>{i + 1} </MTable.Td>
             {row.getVisibleCells().map((cell, id) => (
               <MTable.Td key={cell.id + id} className="px-3.5 py-2">
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}

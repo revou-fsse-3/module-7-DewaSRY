@@ -12,16 +12,30 @@ import {
 import { loginPayload, loginSchemas } from "@utils/type";
 import { useMutation } from "@tanstack/react-query";
 import userLogin from "@http/auth/login";
+import useAuthAsideState from "@hooks/useAuthAsideState";
+import useAuthenticationState from "@hooks/useAuthenticationState";
+
 // interface CreateAnimalProps extends ComponentProps<"div">, PropsWithChildren {}
 
 export default function RegisterUser() {
-  const { mutate: handleLogin } = useMutation({
+  const closeModel = useAuthAsideState((s) => s.closeAuthAside);
+  const setIsAuthentications = useAuthenticationState(
+    (s) => s.setIsAuthentications
+  );
+  const { mutate: handleLogin, isSuccess } = useMutation({
     mutationFn: userLogin,
   });
 
   const handlerSubmit: SubmitHandler<loginPayload> = (value) => {
-    handleLogin(value);
+    handleLogin({
+      password: value.password.trim(),
+      username: value.username.trim(),
+    });
+    closeModel();
   };
+  if (isSuccess) {
+    setIsAuthentications(true);
+  }
   return (
     <>
       <Formik<loginPayload>

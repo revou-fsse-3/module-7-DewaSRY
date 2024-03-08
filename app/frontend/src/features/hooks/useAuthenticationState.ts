@@ -1,8 +1,7 @@
 import { create } from "zustand";
-import { getCookies } from "@utils/cookie";
+import { getCookies, setCookies } from "@utils/cookie";
 const initialState = {
-  isAuthentications: getCookies() != null,
-  // isAuthentications: false,
+  isAuthentications: getCookies()?.length !== 0,
 };
 type Actions = {
   setIsAuthentications: (value: boolean) => void;
@@ -10,6 +9,11 @@ type Actions = {
 type State = typeof initialState;
 const useAuthenticationState = create<State & Actions>((set) => ({
   ...initialState,
-  setIsAuthentications: (value) => set({ isAuthentications: value }),
+  setIsAuthentications: (value) => {
+    if (!value) {
+      setCookies(""); // use to remove aut jwt on cookie
+    }
+    set({ isAuthentications: value });
+  },
 }));
 export default useAuthenticationState;

@@ -12,11 +12,14 @@ export default function SelectFormic({
   options,
 }: MySelectProps) {
   const [field, meta] = useField(label);
+  const createId = label + Math.random();
+
   return (
     <Fragment>
-      <label className="flex flex-col item-start my-5" htmlFor={label}>
+      <label className="flex flex-col item-start my-5" htmlFor={createId}>
         <h1 className="text-lg  my-2">{label}</h1>
         <select
+          id={createId}
           {...field}
           className="border-2 border-black px-2  text-left text-lg rounded-sm py-2"
         >
