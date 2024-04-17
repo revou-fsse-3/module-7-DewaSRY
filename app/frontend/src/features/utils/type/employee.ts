@@ -13,7 +13,6 @@ export const employeeSchemas = z.object({
   phone: z.string(),
 });
 export type employeePayload = z.infer<typeof employeeSchemas>;
-
 export interface employeePayloadWithId extends employeePayload {
   employeeId: string;
 }

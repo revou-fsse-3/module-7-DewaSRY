@@ -20,10 +20,12 @@ export default function AnimalTable() {
   if (!isLoading && isSuccess && data.length > 0) {
     setAnimals(data);
   }
+
+  console.log(data);
   return (
     <>
       {isLoading && <Skeletons />}
-      {data && !isLoading && (
+      {data && data.length > 0 && (
         <Table<animalPayloadWithId> columns={columns} data={data} />
       )}
       {data?.length === 0 && <NotFound title="Animal table's is empty" />}

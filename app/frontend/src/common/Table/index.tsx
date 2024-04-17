@@ -74,7 +74,6 @@ function Table<T>({ data, columns }: TableProps<T>) {
         >
           {">"}
         </Button>
-
         <Button
           className="border rounded p-1"
           onClick={() => table.lastPage()}
@@ -83,7 +82,6 @@ function Table<T>({ data, columns }: TableProps<T>) {
           {">>"}
         </Button>
       </div>
-
       <div>
         Showing {table.getRowModel().rows.length.toLocaleString()} of{" "}
         {table.getRowCount().toLocaleString()} Rows
