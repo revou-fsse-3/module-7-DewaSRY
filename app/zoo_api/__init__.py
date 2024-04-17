@@ -2,16 +2,19 @@ from flask import Flask,jsonify
 from flask_smorest import Api
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 
-from app.zoo_api.views.AnimalViews import blp as AnimalView
-from app.zoo_api.views.EmployeeViews import blp as EmployeeView
-from app.zoo_api.views.UserViews import blp as UserViews
-
-
-
-from app.zoo_api.utils.FlaskDb import db
-from app.zoo_api.utils.SqlPhat import  get_sql_phat
+from app.zoo_api.views import (
+    AnimalViewBluePrint,
+    EmployeeViewBluePrint, 
+    UserViewsBluePrint)
+from app.zoo_api.utils import (db, get_sql_phat)
+from app.zoo_api.model import (
+    RoleModel,
+    GenderModel,
+    ScheduleModel,
+    SpeciesModel,
+)
 
 def create_app(db_url=None):
     app = Flask(__name__,static_url_path="/",static_folder="../frontend/dist")
@@ -62,11 +65,36 @@ def create_app(db_url=None):
 
     with app.app_context():
         db.create_all()
+        db.session.add_all([
+            GenderModel("Male"),
+            GenderModel("Female")
+        ])
+        db.session.add_all([
+            SpeciesModel("Reptiles"),
+            SpeciesModel("Mammals"),
+            SpeciesModel("Invertebrates"),
+            SpeciesModel("Amphibians"),
+            SpeciesModel("Insect"),
+            SpeciesModel("Fish"),
+            SpeciesModel("Bird"),
+        ])
+        db.session.add_all([
+            ScheduleModel("Morning"),
+            ScheduleModel("Middle day"),
+            ScheduleModel("Afternoon"),
+        ])
+        
+        db.session.add_all([
+            RoleModel("Animal keeper"),
+            RoleModel("Manager"),
+            RoleModel("Cleaner"),
+        ])
+        db.session.commit()
     api = Api(app)
     
-    api.register_blueprint(AnimalView,)
-    api.register_blueprint(EmployeeView,)
-    api.register_blueprint(UserViews)
+    api.register_blueprint(AnimalViewBluePrint)
+    api.register_blueprint(EmployeeViewBluePrint)
+    api.register_blueprint(UserViewsBluePrint)
     @app.route("/")
     def index():
         return app.send_static_file("index.html")
