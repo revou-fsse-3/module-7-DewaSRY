@@ -1,0 +1,3 @@
+- [] update readme instruction
+- [] fix project structure and abstraction
+- [] fix frontend structure
