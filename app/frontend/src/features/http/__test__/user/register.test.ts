@@ -1,5 +1,5 @@
 import { it, describe, expect, vi, beforeEach, afterEach } from "vitest";
-import fetchUserRegister from "@http/auth/register";
+import fetchUserRegister from "@/features/http/auth/auth-register";
 const mocks = vi.hoisted(() => {
   return {
     fetchLoginMock: vi.fn(),

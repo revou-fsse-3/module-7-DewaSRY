@@ -1,5 +1,5 @@
 import { ColumnDef, createColumnHelper } from "@tanstack/react-table";
-import { animalPayloadWithId } from "@utils/type";
+import { animalPayloadWithId } from "@/features/entity";
 import ActionsButton from "@components/ActionsButton";
 import { Text } from "@mantine/core";
 const columnHelper = createColumnHelper<animalPayloadWithId>();

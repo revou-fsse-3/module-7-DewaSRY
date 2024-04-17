@@ -1,5 +1,5 @@
 import { describe, vi, beforeEach, afterEach, expect, it } from "vitest";
-import delAnimal from "@http/animal/delAnimal";
+import delAnimal from "@/features/http/animal/animal-del";
 
 const mocks = vi.hoisted(() => {
   return {

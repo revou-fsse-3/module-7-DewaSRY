@@ -1,15 +1,17 @@
 import { FC, ComponentProps, PropsWithChildren } from "react";
 import { AppShell } from "@mantine/core";
-import AuthAside from "@components/AuthAside";
 import MainTabs from "@components/MainTabs";
-import MainModal from "@components/MainModal";
-import MainALert from "@components/MainALert";
 import HeaderLogo from "@components/HeaderLogo";
-import MainFooter from "@components/MainFooter";
+import Footer from "@common/Footer";
+
+import MainFormModel from "@container/MainFormModel";
+import MainALert from "@container/MainALert";
+import AuthAside from "@container/AuthAside";
 
 interface HomeProps extends ComponentProps<"div"> {}
 type HomeComponents = FC<HomeProps> & PropsWithChildren;
 const Home: HomeComponents = () => {
+  console.log(import.meta.env.VITE_TEST);
   return (
     <AppShell
       transitionDuration={700}
@@ -25,14 +27,12 @@ const Home: HomeComponents = () => {
           <MainTabs />
         </div>
       </AppShell.Main>
-      <AppShell.Section>
-        <MainModal />
-        <AuthAside />
-        <MainALert />
-      </AppShell.Section>
-      <footer className="p2-8 pt-2 mx-2  ">
-        <MainFooter />
-      </footer>
+
+      <MainFormModel />
+      <AuthAside />
+      <MainALert />
+
+      <Footer />
     </AppShell>
   );
 };

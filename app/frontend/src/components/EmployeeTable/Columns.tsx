@@ -1,5 +1,5 @@
 import { ColumnDef, createColumnHelper } from "@tanstack/react-table";
-import { employeePayloadWithId } from "@utils/type";
+import { employeePayloadWithId } from "@/features/entity";
 import ActionsButton from "@components/ActionsButton";
 import { Text } from "@mantine/core";
 

@@ -1,5 +1,8 @@
 import { ZOO_API_HTTPS } from "@utils/http";
-import { loginPayload as authPayload, registerResponse } from "@utils/type";
+import {
+  loginPayload as authPayload,
+  registerResponse,
+} from "@/features/entity";
 import { setCookies } from "@utils/cookie";
 export default async function userLogin(payload: authPayload) {
   const response = await fetch(`${ZOO_API_HTTPS}/login`, {

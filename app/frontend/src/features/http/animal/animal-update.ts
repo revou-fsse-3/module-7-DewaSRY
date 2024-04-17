@@ -1,15 +1,16 @@
 import { getCookies } from "@utils/cookie";
 import { ZOO_API_HTTPS } from "@utils/http";
 import {
-  employeePayloadWithId,
-  employeePayload as employee,
+  animalPayloadWithId,
+  animalPayload,
   updatePayload,
-} from "@utils/type";
+} from "@/features/entity";
+
 export default async function updateAnimal({
   payload,
   id,
-}: updatePayload<employee>) {
-  const response = await fetch(`${ZOO_API_HTTPS}/employee/${id}`, {
+}: updatePayload<animalPayload>) {
+  const response = await fetch(`${ZOO_API_HTTPS}/animal/${id}`, {
     method: "PUT",
     body: JSON.stringify(payload),
     headers: {
@@ -20,8 +21,8 @@ export default async function updateAnimal({
   });
 
   if (!response.ok) {
-    throw Error("failed to create employee");
+    throw Error("failed to update animal");
   }
 
-  return response.json() as unknown as employeePayloadWithId;
+  return response.json() as unknown as animalPayloadWithId;
 }

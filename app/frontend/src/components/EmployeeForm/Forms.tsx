@@ -15,11 +15,11 @@ import {
   employeePayload as employee,
   roles,
   schedules,
-} from "@utils/type";
+} from "@/features/entity";
 import { useMutation } from "@tanstack/react-query";
-import employeeCreate from "@http/employee/newEmployee";
-import employeeUpdate from "@http/employee/updateEmployee";
-import employeeDelete from "@http/employee/delEmployee";
+import employeeCreate from "@/features/http/employee/employee-create";
+import employeeUpdate from "@/features/http/employee/employee-update";
+import employeeDelete from "@/features/http/employee/employee-del";
 import useMainModeState from "@hooks/useMainModeState";
 
 import { allDataMutateSuccess } from "@features/query";

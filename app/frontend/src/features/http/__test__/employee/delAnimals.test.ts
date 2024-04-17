@@ -1,5 +1,5 @@
 import { describe, vi, beforeEach, afterEach, expect, it } from "vitest";
-import delEmployee from "@http/employee/delEmployee";
+import delEmployee from "@/features/http/employee/employee-del";
 
 const mocks = vi.hoisted(() => {
   return {

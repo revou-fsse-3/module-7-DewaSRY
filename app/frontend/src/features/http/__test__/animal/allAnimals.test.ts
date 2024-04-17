@@ -1,6 +1,6 @@
 import { describe, vi, beforeEach, afterEach, expect, it } from "vitest";
-import getAllAnimal from "@http/animal/allAnimals";
-import { animalPayload, animalPayloadWithId } from "@utils/type";
+import getAllAnimal from "@/features/http/animal/animal-get-all";
+import { animalPayload, animalPayloadWithId } from "@/features/entity";
 
 const mockAnimal: animalPayload = {
   name: "cat",

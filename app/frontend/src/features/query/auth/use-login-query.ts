@@ -1,31 +1,33 @@
 import { useMutation } from "@tanstack/react-query";
-import userRegister from "@http/auth/register";
+import userLogin from "@/features/http/auth/auth-login";
 import useAlertState from "@hooks/useAlertState";
 import useAuthAsideState from "@hooks/useAuthAsideState";
 import useAuthenticationState from "@hooks/useAuthenticationState";
-export default function useUserRegister() {
+
+export default function useUserLoginQuery() {
   const closeAuthMode = useAuthAsideState((s) => s.closeAuthAside);
   const setProblemFound = useAlertState((s) => s.setProblemFound);
+
   const setIsAuthentications = useAuthenticationState(
     (s) => s.setIsAuthentications
   );
   const { mutate, error } = useMutation({
-    mutationFn: userRegister,
+    mutationFn: userLogin,
     onSuccess: () => {
       closeAuthMode();
       setIsAuthentications(true);
     },
     onError: () => {
       setProblemFound(
-        "Failed to Register",
-        "there is some issus while Registering your form,there is might be someone already use the user name"
+        "Failed to Login ",
+        "there is some issus while login maybe your password was wrong "
       );
       closeAuthMode();
     },
   });
-
   console.log(error);
+
   return {
-    handlerUserRegister: mutate,
+    handlerUserLogin: mutate,
   };
 }

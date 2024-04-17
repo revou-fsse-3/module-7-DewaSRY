@@ -1,7 +1,7 @@
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
 
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import { fileURLToPath, URL } from "node:url";
 
@@ -17,6 +17,7 @@ export default defineConfig({
       ),
       "@features": fileURLToPath(new URL("./src/features", import.meta.url)),
       "@common": fileURLToPath(new URL("./src/common", import.meta.url)),
+      "@container": fileURLToPath(new URL("./src/container", import.meta.url)),
       "@http": fileURLToPath(new URL("./src/features/http", import.meta.url)),
       "@utils": fileURLToPath(new URL("./src/features/utils", import.meta.url)),
       "@hooks": fileURLToPath(new URL("./src/features/hooks", import.meta.url)),

@@ -1,6 +1,6 @@
 import { describe, vi, beforeEach, afterEach, expect, it } from "vitest";
-import { employeePayload, employeePayloadWithId } from "@utils/type";
-import updateEmployee from "@http/employee/updateEmployee";
+import { employeePayload, employeePayloadWithId } from "@/features/entity";
+import updateEmployee from "@/features/http/employee/employee-update";
 
 const mockEmployee: employeePayload = {
   role: "Manager",

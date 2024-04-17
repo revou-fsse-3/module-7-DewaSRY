@@ -29,7 +29,6 @@ export default function SelectFormic({
             </Fragment>
           ))}
         </select>
-
         {children}
         {meta.touched && meta.error ? (
           <div className="text-red-400 text-left  my-2">{meta.error}</div>

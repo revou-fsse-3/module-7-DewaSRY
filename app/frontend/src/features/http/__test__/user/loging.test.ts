@@ -1,5 +1,5 @@
 import { it, describe, expect, vi, beforeEach, afterEach } from "vitest";
-import fetchLogin from "@http/auth/login";
+import fetchLogin from "@/features/http/auth/auth-login";
 const mocks = vi.hoisted(() => {
   return {
     fetchMock: vi.fn(),

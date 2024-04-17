@@ -2,9 +2,11 @@ import { PropsWithChildren, ComponentProps } from "react";
 import { Button, Tooltip } from "@mantine/core";
 
 import useAuthenticationState from "@/features/hooks/useAuthenticationState";
+
 interface ActionsFormProps extends PropsWithChildren, ComponentProps<"span"> {
   handleClick: () => void;
 }
+
 export default function ProtectionButton({
   children,
   handleClick,

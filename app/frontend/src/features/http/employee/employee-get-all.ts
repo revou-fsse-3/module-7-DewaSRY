@@ -1,6 +1,6 @@
 import { getCookies } from "@utils/cookie";
 import { ZOO_API_HTTPS } from "@utils/http";
-import { employeePayloadWithId } from "@utils/type";
+import { employeePayloadWithId } from "@/features/entity";
 export default async function getAllEmployee() {
   const response = await fetch(`${ZOO_API_HTTPS}/employee`, {
     method: "GET",

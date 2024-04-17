@@ -1,7 +1,7 @@
 // import { ComponentProps, PropsWithChildren } from "react";
 import Table from "@common/Table";
-import { employeePayloadWithId } from "@utils/type";
-import getAllEmployees from "@http/employee/allEmployees";
+import { employeePayloadWithId } from "@/features/entity";
+import getAllEmployees from "@/features/http/employee/employee-get-all";
 import { useQuery } from "@tanstack/react-query";
 import useEmployees from "@/features/hooks/useEmployees";
 import columns from "./Columns";

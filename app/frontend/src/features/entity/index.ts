@@ -13,7 +13,6 @@ export const species = [
 ];
 
 export const roles = ["Animal keeper", "Manager", "Cleaner"];
-
 export const schedules = ["Morning", "Middle day", "Afternoon"];
 export const genders = ["Male", "Female"];
 export interface updatePayload<T> {

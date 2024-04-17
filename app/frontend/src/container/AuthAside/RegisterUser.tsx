@@ -9,12 +9,14 @@ import {
   Form,
   toFormikValidationSchema,
 } from "@common/Forms";
-import { loginPayload, loginSchemas } from "@utils/type";
-import useUserLogin from "@/features/query/useLoginQuery";
+import { registerPayload, registerSchema } from "@/features/entity";
+import { useRegisterQuery } from "@/features/query/auth";
+
 export default function RegisterUser() {
-  const { handlerUserLogin } = useUserLogin();
-  const handlerSubmit: SubmitHandler<loginPayload> = (value) => {
-    handlerUserLogin({
+  const { handlerUserRegister } = useRegisterQuery();
+
+  const handlerSubmit: SubmitHandler<registerPayload> = (value) => {
+    handlerUserRegister({
       password: value.password.trim(),
       username: value.username.trim(),
     });
@@ -22,20 +24,22 @@ export default function RegisterUser() {
 
   return (
     <>
-      <Formik<loginPayload>
+      <Formik<registerPayload>
         initialValues={{
           username: "",
           password: "",
+          confirmPassword: "",
         }}
-        validationSchema={toFormikValidationSchema(loginSchemas)}
+        validationSchema={toFormikValidationSchema(registerSchema)}
         onSubmit={handlerSubmit}
       >
-        {(_props: FormikProps<loginPayload>) => (
+        {(_props: FormikProps<registerPayload>) => (
           <Form>
             <FormInput label="username" />
             <FormInput label="password" type="password" />
-            <Button type="submit" fullWidth variant="outline">
-              Login
+            <FormInput label="confirmPassword" type="password" />
+            <Button fullWidth variant="outline" type="submit" color="gray">
+              Register
             </Button>
           </Form>
         )}

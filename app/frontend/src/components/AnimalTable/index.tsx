@@ -1,7 +1,7 @@
 // import { ComponentProps, PropsWithChildren } from "react";
 import Table from "@common/Table";
-import { animalPayloadWithId } from "@utils/type";
-import getAllAnimals from "@http/animal/allAnimals";
+import { animalPayloadWithId } from "@/features/entity";
+import getAllAnimals from "@/features/http/animal/animal-get-all";
 import { useQuery } from "@tanstack/react-query";
 import useAnimals from "@/features/hooks/useAnimals";
 import columns from "./Columns";

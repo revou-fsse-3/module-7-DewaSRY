@@ -24,6 +24,7 @@
       //component
       "@components/*": ["./src/components/*"],
       "@common/*": ["./src/common/*"],
+      "@container/*": ["./src/container/*"],
 
       //features
       "@features/*": ["./src/features/*"],

@@ -1,7 +1,7 @@
 import { Tabs, rem } from "@mantine/core";
 import { IconPhoto, IconMessageCircle } from "@tabler/icons-react";
-import RegisterUser from "@components/AuthAside/RegisterUser";
-import LoginUser from "@components/AuthAside/LoginUser";
+import RegisterUser from "@/container/AuthAside/RegisterUser";
+import LoginUser from "@/container/AuthAside/LoginUser";
 // import { ComponentProps, PropsWithChildren } from "react";
 
 // interface MainTabsProps extends ComponentProps<"div">, PropsWithChildren {}

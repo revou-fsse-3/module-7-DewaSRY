@@ -9,7 +9,7 @@ const links = [
   { link: "#", label: "Label 5" },
 ];
 
-export default function MainFooter() {
+export default function Footer() {
   const items = links.map((link) => (
     <Anchor<"a">
       c="dimmed"
@@ -23,7 +23,7 @@ export default function MainFooter() {
   ));
 
   return (
-    <div>
+    <footer className="p2-8 pt-2 mx-2 ">
       <Container fluid className="flex justify-between">
         <div>
           <Title order={1} className="inline-block text-yellow-400">
@@ -38,6 +38,6 @@ export default function MainFooter() {
       <hr className="mt-4 p-2 border-gray-600 " />
       <hr className="mt-2 p-2 border-gray-600 " />
       <hr className="mt-2 p-2 border-gray-600 " />
-    </div>
+    </footer>
   );
 }

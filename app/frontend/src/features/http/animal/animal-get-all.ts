@@ -1,5 +1,6 @@
 import { ZOO_API_HTTPS } from "@utils/http";
-import { animalPayloadWithId } from "@utils/type";
+import { animalPayloadWithId } from "@/features/entity";
+
 export default async function getAllAnimals() {
   const response = await fetch(`${ZOO_API_HTTPS}/animal`, {
     method: "GET",
@@ -12,6 +13,5 @@ export default async function getAllAnimals() {
     throw Error("failed to create animal");
   }
   const data = response.json() as unknown as animalPayloadWithId[];
-
   return data;
 }

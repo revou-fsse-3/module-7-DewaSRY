@@ -4,7 +4,7 @@ import AnimalForm from "@components/AnimalForm";
 import useMainTabState from "@hooks/useMainTabState";
 import useMainModeState from "@hooks/useMainModeState";
 
-export default function MainModal() {
+export default function MainModelForm() {
   const currentTab = useMainTabState((s) => s.currentTab);
   const { modelOpen, closeModel } = useMainModeState();
   return (

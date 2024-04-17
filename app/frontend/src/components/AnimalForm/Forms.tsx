@@ -1,5 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // import { ComponentProps, PropsWithChildren } from "react";
+import { useMutation } from "@tanstack/react-query";
+import animalCreate from "@/features/http/animal/animal-create";
+import animalUpdate from "@/features/http/animal/animal-update";
+import animalDelete from "@/features/http/animal/animal-del";
+import useMainModeState from "@hooks/useMainModeState";
+import { allDataMutateSuccess } from "@features/query";
 import { Button } from "@mantine/core";
 import {
   SubmitHandler,
@@ -15,14 +21,7 @@ import {
   animalPayload as animal,
   species,
   genders,
-} from "@utils/type";
-import { useMutation } from "@tanstack/react-query";
-import animalCreate from "@http/animal/newAnimal";
-import animalUpdate from "@http/animal/updateAnimal";
-import animalDelete from "@http/animal/delAnimal";
-import useMainModeState from "@hooks/useMainModeState";
-
-import { allDataMutateSuccess } from "@features/query";
+} from "@/features/entity";
 
 interface AnimalFormsProps {
   initialValue?: animal;
@@ -46,10 +45,12 @@ export default function AnimalForms({
     mutationFn: animalCreate,
     ...allDataMutateSuccess("animal"),
   });
+
   const { mutate: animalDeleteHandler } = useMutation({
     mutationFn: animalDelete,
     ...allDataMutateSuccess("animal"),
   });
+
   const { mutate: animalUpdateHandler } = useMutation({
     mutationFn: animalUpdate,
     ...allDataMutateSuccess("animal"),
@@ -94,6 +95,7 @@ export default function AnimalForms({
                 ? "Create new animal record"
                 : `Edit '${initialValue.name}' data`}
             </Button>
+
             {!isCreate && (
               <Button
                 className=""

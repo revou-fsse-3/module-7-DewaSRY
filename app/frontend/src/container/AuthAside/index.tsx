@@ -1,5 +1,5 @@
 import { Drawer, Text, Button, Container } from "@mantine/core";
-import AuthTab from "@components/AuthAside/AuthTab";
+import AuthTab from "@/container/AuthAside/AuthTab";
 import useAuthAsideState from "@hooks/useAuthAsideState";
 import useAuthenticationState from "@hooks/useAuthenticationState";
 export default function AuthAside() {

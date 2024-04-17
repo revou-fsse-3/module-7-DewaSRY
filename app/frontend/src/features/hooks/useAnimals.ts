@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { create } from "zustand";
-import { animalPayloadWithId as animals } from "@utils/type";
+import { animalPayloadWithId as animals } from "@/features/entity";
 const initialState = {
   animals: [] as animals[],
   currentAnimalId: "",
