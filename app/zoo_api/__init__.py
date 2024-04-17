@@ -11,8 +11,7 @@ from app.zoo_api.views.UserViews import blp as UserViews
 
 
 from app.zoo_api.utils.FlaskDb import db
-from app.zoo_api.utils.SqlPhat import  my_sql
-
+from app.zoo_api.utils.SqlPhat import  get_sql_phat
 
 def create_app(db_url=None):
     app = Flask(__name__,static_url_path="/",static_folder="../frontend/dist")
@@ -22,8 +21,8 @@ def create_app(db_url=None):
     app.config["OPENAPI_URL_PREFIX"] = "/"
     app.config["OPENAPI_SWAGGER_UI_PATH"] = "/swagger-ui"
     app.config["OPENAPI_SWAGGER_UI_URL"] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist/"
-    app.config["SQLALCHEMY_DATABASE_URI"] = db_url or my_sql
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    app.config["SQLALCHEMY_DATABASE_URI"] = db_url or get_sql_phat()
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False  
     app.config["PROPAGATE_EXCEPTIONS"] = True
     app.config["JWT_SECRET_KEY"]="WkmpquACbmiuS7gd" 
     cors = CORS(app)
@@ -61,7 +60,8 @@ def create_app(db_url=None):
             401,
         )
 
-
+    with app.app_context():
+        db.create_all()
     api = Api(app)
     
     api.register_blueprint(AnimalView,)
