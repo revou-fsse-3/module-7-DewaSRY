@@ -19,6 +19,7 @@ export default function RegisterUser() {
     handlerUserRegister({
       password: value.password.trim(),
       username: value.username.trim(),
+      confirmPassword: value.confirmPassword.trim(),
     });
   };
 
