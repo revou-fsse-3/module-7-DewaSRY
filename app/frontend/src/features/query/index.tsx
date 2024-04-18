@@ -6,24 +6,16 @@ import { PropsWithChildren } from "react";
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      // ✅ turns retries off
       retry: false,
     },
   },
 });
-
-export function allDataMutateSuccess(name: string) {
-  return {
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: [`get-all-${name}`],
-      });
-    },
-  };
-}
 
 export default function Provider({ children }: PropsWithChildren) {
   return (
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   );
 }
+
+export const GET_ALL_ANIMALS = "get_all_animal";
+export const GET_ALL_EMPLOYEE = "get_all_employee";

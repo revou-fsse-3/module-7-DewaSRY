@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { AxiosResponse } from "axios";
 import { zooApi } from "@features/api";
-import { queryClient } from "@features/query";
+import { queryClient, GET_ALL_EMPLOYEE } from "@features/query";
 import useMainModeState from "@hooks/useMainModeState";
 
 import { employeePayload, employeePayloadWithId } from "@features/entity";
@@ -21,7 +21,7 @@ export default function useUpdateEmployee() {
         .then((d) => d.data),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [`get-all-employee`],
+        queryKey: [GET_ALL_EMPLOYEE],
       });
       _closeModel();
     },

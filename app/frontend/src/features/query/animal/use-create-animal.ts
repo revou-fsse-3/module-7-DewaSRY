@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { zooApi } from "@features/api";
-import { queryClient } from "@features/query";
+import { queryClient, GET_ALL_ANIMALS } from "@features/query";
 import useMainModeState from "@hooks/useMainModeState";
 import { AxiosResponse } from "axios";
 
@@ -18,7 +18,7 @@ export default function useCreateAnimal() {
         .then((d) => d.data),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [`get-all-animal`],
+        queryKey: [GET_ALL_ANIMALS],
       });
       _closeModel();
     },

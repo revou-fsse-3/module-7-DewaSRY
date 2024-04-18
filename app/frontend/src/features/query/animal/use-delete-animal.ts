@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { zooApi } from "@features/api";
-import { queryClient } from "@features/query";
+import { queryClient, GET_ALL_ANIMALS } from "@features/query";
 import useMainModeState from "@hooks/useMainModeState";
 import useAnimals from "@features/hooks/useAnimals";
 
@@ -13,7 +13,7 @@ export default function useDeleteAnimal() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [`get-all-animal`],
+        queryKey: [GET_ALL_ANIMALS],
       });
       _closeModel();
     },
