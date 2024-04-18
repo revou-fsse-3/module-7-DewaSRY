@@ -15,7 +15,7 @@ const columns = [
     footer: (info) => info.column.id,
   }),
   columnHelper.accessor("gender", {
-    header: () => <Text size="md">GENDER</Text>,
+    header: () => <Text size="md">GENDER </Text>,
 
     cell: (info) => <Text size="md">{info.renderValue()}</Text>,
 

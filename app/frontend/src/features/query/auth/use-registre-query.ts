@@ -1,10 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
-import userRegister from "@/features/http/auth/auth-register";
-
+// import userRegister from "@/features/http/auth/auth-register";
+import { authApi } from "@features/api";
 import useAlertState from "@hooks/useAlertState";
 import useAuthAsideState from "@hooks/useAuthAsideState";
 import useAuthenticationState from "@hooks/useAuthenticationState";
-
+import { registerPayload } from "@features/entity";
 export default function useUserRegister() {
   const closeAuthMode = useAuthAsideState((s) => s.closeAuthAside);
   const setProblemFound = useAlertState((s) => s.setProblemFound);
@@ -12,7 +12,8 @@ export default function useUserRegister() {
     (s) => s.setIsAuthentications
   );
   const { mutate, error } = useMutation({
-    mutationFn: userRegister,
+    mutationFn: (registerPayload: registerPayload) =>
+      authApi.post("/employee", registerPayload),
     onSuccess: () => {
       closeAuthMode();
       setIsAuthentications(true);

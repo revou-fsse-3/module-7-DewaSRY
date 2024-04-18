@@ -1,34 +1,24 @@
 // import { ComponentProps, PropsWithChildren } from "react";
 import Table from "@common/Table";
-import { animalPayloadWithId } from "@/features/entity";
-import getAllAnimals from "@/features/http/animal/animal-get-all";
-import { useQuery } from "@tanstack/react-query";
-import useAnimals from "@/features/hooks/useAnimals";
+import { animalPayloadWithId as AnimalRes } from "@/features/entity";
 import columns from "./Columns";
 import Skeletons from "@common/Skeletons";
 import NotFound from "@/common/NotFound";
 
+import { useGetAllAnimals } from "@query/animal";
 // interface EmployeeTableProps extends ComponentProps<"div">, PropsWithChildren {}
 export default function AnimalTable() {
-  const setAnimals = useAnimals((s) => s.setAnimals);
-  const { data, isLoading, isSuccess } = useQuery<animalPayloadWithId[], Error>(
-    {
-      queryFn: () => getAllAnimals(),
-      queryKey: ["get-all-animal"],
-    }
-  );
-  if (!isLoading && isSuccess && data.length > 0) {
-    setAnimals(data);
-  }
+  const { animals, isLoading } = useGetAllAnimals();
 
-  console.log(data);
   return (
     <>
-      {isLoading && <Skeletons />}
-      {data && data.length > 0 && (
-        <Table<animalPayloadWithId> columns={columns} data={data} />
+      {isLoading ? (
+        <Skeletons />
+      ) : animals && animals.length > 0 ? (
+        <Table<AnimalRes> columns={columns} data={animals} />
+      ) : (
+        <NotFound title="Employee table's is empty" />
       )}
-      {data?.length === 0 && <NotFound title="Animal table's is empty" />}
     </>
   );
 }

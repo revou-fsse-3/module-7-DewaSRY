@@ -11,7 +11,6 @@ import AuthAside from "@container/AuthAside";
 interface HomeProps extends ComponentProps<"div"> {}
 type HomeComponents = FC<HomeProps> & PropsWithChildren;
 const Home: HomeComponents = () => {
-  console.log(import.meta.env.VITE_TEST);
   return (
     <AppShell
       transitionDuration={700}

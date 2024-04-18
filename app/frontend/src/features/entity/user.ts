@@ -26,6 +26,7 @@ export const registerSchema = z
   });
 export type registerPayload = z.infer<typeof registerSchema>;
 export type loginPayload = z.infer<typeof loginSchemas>;
-export interface registerResponse {
+
+export interface authResponse {
   access_token: string;
 }

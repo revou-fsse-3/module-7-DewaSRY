@@ -67,7 +67,8 @@ def create_app(db_url=None):
         db.create_all()
         db.session.add_all([
             GenderModel("Male"),
-            GenderModel("Female")
+            GenderModel("Female"),
+            GenderModel("Mental ill")
         ])
         db.session.add_all([
             SpeciesModel("Reptiles"),
